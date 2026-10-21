@@ -1,0 +1,77 @@
+{
+    "providerId": "forgigs.com",
+    "providerName": "Forgigs",
+    "serviceId": "email-sending",
+    "serviceName": "Send email from your domain",
+    "version": 1,
+    "logoUrl": "https://pages.forgigs.com/logo.svg",
+    "description": "Adds the DNS records Resend needs so Forgigs can send email from your domain. Does not change the website address.",
+    "syncPubKeyDomain": "keys.forgigs.com",
+    "syncRedirectDomain": "pages.forgigs.com",
+    "records": [
+        {
+            "groupId": "mx",
+            "type": "MX",
+            "host": "send",
+            "pointsTo": "%mx_target%",
+            "priority": 10,
+            "ttl": 3600
+        },
+        {
+            "groupId": "spf",
+            "type": "SPFM",
+            "host": "send",
+            "spfRules": "%spf_rules%",
+            "ttl": 3600
+        },
+        {
+            "groupId": "spf_cname",
+            "type": "CNAME",
+            "host": "send",
+            "pointsTo": "%spf_cname_target%",
+            "ttl": 3600
+        },
+        {
+            "groupId": "spf_cname_r",
+            "type": "CNAME",
+            "host": "rsend",
+            "pointsTo": "%spf_cname_r_target%",
+            "ttl": 3600
+        },
+        {
+            "groupId": "dkim1",
+            "type": "CNAME",
+            "host": "%dkim1%._domainkey",
+            "pointsTo": "%dkim1_target%",
+            "ttl": 3600
+        },
+        {
+            "groupId": "dkim2",
+            "type": "CNAME",
+            "host": "%dkim2%._domainkey",
+            "pointsTo": "%dkim2_target%",
+            "ttl": 3600
+        },
+        {
+            "groupId": "dkim3",
+            "type": "CNAME",
+            "host": "%dkim3%._domainkey",
+            "pointsTo": "%dkim3_target%",
+            "ttl": 3600
+        },
+        {
+            "groupId": "dkimtxt",
+            "type": "TXT",
+            "host": "resend._domainkey",
+            "data": "%dkim_txt%",
+            "ttl": 3600
+        },
+        {
+            "groupId": "track",
+            "type": "CNAME",
+            "host": "links",
+            "pointsTo": "%track_target%",
+            "ttl": 3600
+        }
+    ]
+}
